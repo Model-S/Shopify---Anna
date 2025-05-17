@@ -1,0 +1,55 @@
+<style>
+  .image-container {
+    display: flex;
+    justify-content: center;
+    padding：10px 0;
+  }
+
+  .image-block {
+    text-align: center;
+  }
+
+  .image-block img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .image-block img {
+    width: 100%;
+    height: 300px;          /* 设置统一高度 */
+    object-fit: contain;    /* 完整显示图片内容，不裁剪 */
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    background-color: #ffffff; /* 可选：加背景色填充空白区域更美观 */
+  }
+</style>
+
+<div class="image-container">
+  <div class="image-block">
+    {% if section.settings.image_1 %}
+      <img src="{{ section.settings.image_1 | img_url: '720x720' }}" alt="Block 1 Image" />
+    {% else %}
+      <p>Add Image 1 in Section Settings</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.image-block.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image Block 1"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Image Blocks",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
